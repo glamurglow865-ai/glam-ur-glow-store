@@ -1,0 +1,21 @@
+```json
+{
+"name": "glam-ur-glow-store",
+"version": "1.0.0",
+"private": true,
+"scripts": {
+"dev": "next dev",
+"build": "next build",
+"start": "next start"
+},
+"dependencies": {
+"next": "13.4.12",
+"react": "18.2.0",
+"react-dom": "18.2.0",
+"@supabase/supabase-js": "2.27.0",
+"zustand": "4.6.4",
+"uuid": "9.0.0",
+"react-hook-form": "7.45.1"
+}
+}
+```
