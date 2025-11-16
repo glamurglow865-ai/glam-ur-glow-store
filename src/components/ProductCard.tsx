@@ -1,34 +1,26 @@
-interface ProductCardProps {
-id: string;
-name: string;
-price: number;
-fakePrice?: number;
-image: string;
-}
+'use client';
 
+import Image from 'next/image';
 
-export default function ProductCard({ id, name, price, fakePrice, image }: ProductCardProps) {
-return (
-<a
-href={`/product/${id}`}
-className="border rounded-xl p-4 shadow-sm bg-white hover:shadow-md transition block"
->
-<img
-src={image}
-alt={name}
-className="w-full h-40 object-cover rounded-lg mb-3 bg-gray-100"
-/>
+export default function ProductCard({ product }: any) {
+  return (
+    <div className="border rounded-lg p-3 shadow-sm">
+      <Image
+        src={product.image_url}
+        alt={product.name}
+        width={400}
+        height={400}
+        className="rounded-md"
+      />
 
+      <h3 className="font-semibold mt-2">{product.name}</h3>
 
-<h4 className="font-semibold text-gray-800 truncate">{name}</h4>
-
-
-<div className="mt-1 flex gap-2 items-center">
-<p className="text-lg font-bold text-gray-900">₹{price}</p>
-{fakePrice && (
-<p className="text-sm text-gray-500 line-through">₹{fakePrice}</p>
-)}
-</div>
-</a>
-);
+      <div className="flex gap-2 items-center">
+        <span className="text-lg font-bold text-pink-600">₹{product.price}</span>
+        {product.fake_price && (
+          <span className="line-through text-gray-400">₹{product.fake_price}</span>
+        )}
+      </div>
+    </div>
+  );
 }
