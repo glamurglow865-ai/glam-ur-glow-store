@@ -1,39 +1,11 @@
-// src/components/AdminShell.tsx
-'use client';
-import { ReactNode, useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabaseClient';
-import { useRouter } from 'next/navigation';
-
-export default function AdminShell({ children }: { children: ReactNode }) {
-  const router = useRouter();
-  const [checking, setChecking] = useState(true);
-
-  useEffect(() => {
-    // verify user is logged in and is admin
-    (async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        router.push('/gg-admin-987');
-        return;
-      }
-      // check admins table
-      const { data: admins, error } = await supabase
-        .from('admins')
-        .select('*')
-        .eq('user_id', user.id)
-        .limit(1);
-
-      if (!admins || admins.length === 0) {
-        // not an admin
-        router.push('/gg-admin-987');
-        return;
-      }
-      setChecking(false);
-    })();
-  }, [router]);
-
-  if (checking) {
-    return <div className="p-8">Checking admin access…</div>;
+export default function AdminShell({ children }: any) {
+  return (
+    <div className="max-w-4xl mx-auto p-5">
+      <h1 className="text-3xl font-bold mb-5">Admin Panel</h1>
+      {children}
+    </div>
+  );
+}
   }
 
   return (
